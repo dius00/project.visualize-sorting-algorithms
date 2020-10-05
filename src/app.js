@@ -4,8 +4,10 @@
 */
 
 // How can we use require here if it's frontend? We can thank webpack.
+//const updt = require("./bubbleToChart");
 const BubbleSort = require("./bubbleSort");
 const Chart = require("chart.js");
+
 
 //const Chart = require("Chart.js");
 // A link to our styles!
@@ -16,9 +18,10 @@ const bubble = new BubbleSort(toBeOrdered);
 //bubble.sort();
 
 let ctx = document.getElementById("myChart").getContext("2d");
-var myChart = new Chart(ctx, {
+window.myChart = new Chart(ctx, {
   type: "bar",
   data: {
+    // eslint-disable-next-line prettier/prettier
     labels: ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"],
     datasets: [
       {
@@ -54,8 +57,9 @@ var myChart = new Chart(ctx, {
     ],
   },
   options: {
+    animation: {
+      duration: 0},
     responsive: true,
-    aspectRatio	: 3,
     scales: {
       yAxes: [
         {
@@ -67,32 +71,47 @@ var myChart = new Chart(ctx, {
     },
   },
 });
-//myChart.update();
+const updt = (myChart) => {
+  const numToLabel = {
+    "1": "One",
+    "2": "Two",
+    "3": "Three",
+    "4": "Four",
+    "5": "Five",
+    "6": "Six",
+    "7": "Seven",
+    "8": "Eight",
+    "9": "Nine",
+    "10": "Ten",
+  };
+  function addData(chart, values) {
+    chart.data.labels = values.map((value) => numToLabel[value]);
+    chart.data.datasets.data = values;
+    chart.update();
+  }
+  console.log("here");
+  bubble.sort();
+  addData(myChart, bubble.arr);
+};
 
-/*
-function createCheesyTitle(slogan) {
-  const container = document.createElement("h1");
-  const textNode = document.createTextNode(slogan);
-  container.appendChild(textNode);
-  return container;
-}*/
+const sleepNow = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
 
-//const title = createCheesyTitle(sort.returnValue("Re-Engineer Yourself"));
-//document.getElementById("title").appendChild(title);
-
-/*
-    An simple example of how you can make your project a bit more
-    interactive, if you would like.
-
-    In our `index.html` page, we have a short form.
-    Here is the code that talks to it.
-  */
-function changeTitle(event) {
-  event.preventDefault();
-  // console.log('What is an event?', event);
+async function repeatedGreetingsLoop() {
+  for (let i = 1; i <= 5; i++) {
+    await sleepNow(1000)
+    console.log(`Hello #${i}`)
+  }
 }
 
-const form = document.querySelector("form");
-document.addEventListener("DOMContentLoaded", () => {
-  form.onsubmit = changeTitle;
-});
+
+
+
+
+
+
+
+
+
+let btn = document.getElementById("update");
+btn.onclick = () => bubble.sort();
+ 

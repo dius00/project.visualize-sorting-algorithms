@@ -1,6 +1,6 @@
-const TargetArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const toBeOrdered = [10, 4, 6, 7, 1, 3, 9, 2, 5, 8];
+//const toBeOrdered = [10, 4, 6, 7, 1, 3, 9, 2, 5, 8];
 
+// eslint-disable-next-line no-unused-vars
 class BubbleSort {
   constructor(array) {
     this.arr = array;
@@ -12,7 +12,7 @@ class BubbleSort {
     let areInOrder = 0;
     // eslint-disable-next-line no-constant-condition
     while (true) {
-        this.changeTracker = false;
+      this.changeTracker = false;
 
       for (let i = 0; i < this.arr.length - areInOrder; i++) {
         if (this.arr[i + 1]) {
@@ -23,9 +23,10 @@ class BubbleSort {
         }
       }
       areInOrder++;
-      console.log(this.arr);
+      //console.log(this.arr);
       if (!this.changeTracker) break;
     }
+    return this.arr;
   }
 
   swap(higher, lower) {
@@ -34,5 +35,4 @@ class BubbleSort {
   }
 }
 
-let bubbleme = new BubbleSort(toBeOrdered);
-bubbleme.sort();
+module.exports = BubbleSort;

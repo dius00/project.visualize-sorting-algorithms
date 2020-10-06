@@ -13,7 +13,7 @@ const Chart = require("chart.js");
 require("./index.css");
 
 const toBeOrdered = [10, 4, 6, 7, 1, 3, 9, 2, 5, 8];
-const bubble = new BubbleSort(toBeOrdered);
+let bubble = new BubbleSort(toBeOrdered);
 //bubble.sort();
 
 let ctx = document.getElementById("myChart").getContext("2d");
@@ -21,13 +21,13 @@ window.myChart = new Chart(ctx, {
   type: "bar",
   data: {
     // eslint-disable-next-line prettier/prettier
-    labels: ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"],
+    labels: ["Ten", "Four", "Six", "Seven", "One", "Three", "Nine", "Two", "Five", "Eight"],
     datasets: [
       {
-        label: "#",
+        label: "number",
         data: bubble.arr,
         backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
+          "rgba(54, 162, 235, 0.2)",
           "rgba(54, 162, 235, 0.2)",
           "rgba(54, 162, 235, 0.2)",
           "rgba(54, 162, 235, 0.2)",
@@ -40,7 +40,7 @@ window.myChart = new Chart(ctx, {
           "rgba(54, 162, 235, 0.2)",
         ],
         borderColor: [
-          "rgba(255, 99, 132, 1)",
+          "rgba(54, 162, 235, 1)",
           "rgba(54, 162, 235, 1)",
           "rgba(54, 162, 235, 1)",
           "rgba(54, 162, 235, 1)",
@@ -60,6 +60,7 @@ window.myChart = new Chart(ctx, {
       duration: 0,
     },
     responsive: true,
+    maintainAspectRatio: false,
     scales: {
       yAxes: [
         {
@@ -71,7 +72,22 @@ window.myChart = new Chart(ctx, {
     },
   },
 });
-const updt = (myChart) => {
+
+let srtBtn = document.getElementById("sort");
+//let rstBtn = document.getElementById("reset");
+
+srtBtn.addEventListener("click", () => {
+  bubble.sort();
+});
+
+/*
+rstBtn.addEventListener("click", () => {
+  bubble = new BubbleSort(toBeOrdered);
+  addData(window.myChart, bubble.arr);
+});
+
+
+function addData(chart, values) {
   const numToLabel = {
     "1": "One",
     "2": "Two",
@@ -84,25 +100,34 @@ const updt = (myChart) => {
     "9": "Nine",
     "10": "Ten",
   };
-  function addData(chart, values) {
-    chart.data.labels = values.map((value) => numToLabel[value]);
-    chart.data.datasets.data = values;
-    chart.update();
-  }
-  console.log("here");
-  bubble.sort();
-  addData(myChart, bubble.arr);
-};
-
-const sleepNow = (delay) =>
-  new Promise((resolve) => setTimeout(resolve, delay));
-
-async function repeatedGreetingsLoop() {
-  for (let i = 1; i <= 5; i++) {
-    await sleepNow(1000);
-    console.log(`Hello #${i}`);
-  }
+  const backgroundColor = [
+    "rgba(54, 162, 235, 0.2)",
+    "rgba(54, 162, 235, 0.2)",
+    "rgba(54, 162, 235, 0.2)",
+    "rgba(54, 162, 235, 0.2)",
+    "rgba(54, 162, 235, 0.2)",
+    "rgba(54, 162, 235, 0.2)",
+    "rgba(54, 162, 235, 0.2)",
+    "rgba(54, 162, 235, 0.2)",
+    "rgba(54, 162, 235, 0.2)",
+    "rgba(54, 162, 235, 0.2)",
+  ];
+  const borderColor = [
+    "rgba(54, 162, 235, 1)",
+    "rgba(54, 162, 235, 1)",
+    "rgba(54, 162, 235, 1)",
+    "rgba(54, 162, 235, 1)",
+    "rgba(54, 162, 235, 1)",
+    "rgba(54, 162, 235, 1)",
+    "rgba(54, 162, 235, 1)",
+    "rgba(54, 162, 235, 1)",
+    "rgba(54, 162, 235, 1)",
+    "rgba(54, 162, 235, 1)",
+  ];
+  chart.data.labels = values.map((value) => numToLabel[value]);
+  chart.data.datasets[0].borderColor = borderColor;
+  chart.data.datasets[0].backgroundColor = backgroundColor;
+  chart.data.datasets.data = values;
+  chart.update();
 }
-
-let btn = document.getElementById("update");
-btn.onclick = () => bubble.sort();
+*/

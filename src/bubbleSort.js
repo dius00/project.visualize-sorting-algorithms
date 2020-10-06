@@ -1,16 +1,13 @@
-//const toBeOrdered = [10, 4, 6, 7, 1, 3, 9, 2, 5, 8];
-// eslint-disable-next-line no-unused-vars
 class BubbleSort {
   constructor(array) {
     this.arr = array;
-    this.bubble = [null, null];
     this.changeTracker = true;
   }
 
   sort() {
     let areInOrder = 0;
-    // eslint-disable-next-line no-constant-condition
     const bubble = async () => {
+      // eslint-disable-next-line no-constant-condition
       while (true) {
         this.changeTracker = false;
         for (let i = 0; i < this.arr.length - areInOrder; i++) {
@@ -28,12 +25,11 @@ class BubbleSort {
         }
 
         areInOrder++;
-        //console.log(this.arr);
         if (!this.changeTracker) break;
       }
     };
     bubble();
-    return this.arr;
+    return new Promise.resolve(true);
   }
 
   swap(higher, lower) {
@@ -61,7 +57,8 @@ function addData(chart, values, index) {
     "10": "Ten",
   };
   const red = "rgba(255, 99, 132, 1)";
-  const  backgroundColor = [
+  const redBack = "rgba(255, 99, 132, 0.5)";
+  const backgroundColor = [
     "rgba(54, 162, 235, 0.2)",
     "rgba(54, 162, 235, 0.2)",
     "rgba(54, 162, 235, 0.2)",
@@ -74,7 +71,7 @@ function addData(chart, values, index) {
     "rgba(54, 162, 235, 0.2)",
   ];
   const borderColor = [
-    "rgba(54, 162, 235, 1)",    
+    "rgba(54, 162, 235, 1)",
     "rgba(54, 162, 235, 1)",
     "rgba(54, 162, 235, 1)",
     "rgba(54, 162, 235, 1)",
@@ -85,10 +82,8 @@ function addData(chart, values, index) {
     "rgba(54, 162, 235, 1)",
     "rgba(54, 162, 235, 1)",
   ];
-  //console.log(window.myChart.data.datasets);
-  console.log(chart.data.datasets[0]);
   borderColor.splice(index, 2, red, red);
-  backgroundColor.splice(index, 2, red, red);
+  backgroundColor.splice(index, 2, redBack, redBack);
   chart.data.labels = values.map((value) => numToLabel[value]);
   chart.data.datasets[0].borderColor = borderColor;
   chart.data.datasets[0].backgroundColor = backgroundColor;

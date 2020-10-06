@@ -21,9 +21,7 @@ class BubbleSort {
             await timeout(300);
           }
         }
-
         areInOrder++;
-        //if (!this.changeTracker) break;
       }
     };
     bubble();
@@ -80,8 +78,8 @@ function addData(chart, values, index) {
     "rgba(54, 162, 235, 1)",
     "rgba(54, 162, 235, 1)",
   ];
-  borderColor.splice(index - 1, 2, red, red);
-  backgroundColor.splice(index - 1, 2, redBack, redBack);
+  borderColor.splice(index, 2, red, red);
+  backgroundColor.splice(index, 2, redBack, redBack);
   chart.data.labels = values.map((value) => numToLabel[value]);
   chart.data.datasets[0].borderColor = borderColor;
   chart.data.datasets[0].backgroundColor = backgroundColor;

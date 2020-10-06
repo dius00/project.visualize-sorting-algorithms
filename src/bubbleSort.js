@@ -10,18 +10,16 @@ class BubbleSort {
       // eslint-disable-next-line no-constant-condition
       while (this.changeTracker) {
         this.changeTracker = false;
-        for (let i = 0; i < this.arr.length - areInOrder; i++) {
-          if (this.arr[i + 1]) {
-            if (this.arr[i] > this.arr[i + 1]) {
+        for (let i = 1; i < this.arr.length - areInOrder; i++) {
+            if (this.arr[i - 1] > this.arr[i]) {
               await timeout(300);
-              addData(window.myChart, this.arr, i);
-              this.swap(this.arr[i], this.arr[i + 1]);
+              addData(window.myChart, this.arr, i -1);
+              this.swap(this.arr[i - 1], this.arr[i]);
               this.changeTracker = true;
               await timeout(300);
-              addData(window.myChart, this.arr, i);
+              addData(window.myChart, this.arr, i -1);
               await timeout(300);
             }
-          }
         }
 
         areInOrder++;
@@ -82,8 +80,8 @@ function addData(chart, values, index) {
     "rgba(54, 162, 235, 1)",
     "rgba(54, 162, 235, 1)",
   ];
-  borderColor.splice(index, 2, red, red);
-  backgroundColor.splice(index, 2, redBack, redBack);
+  borderColor.splice(index -1, 2, red, red);
+  backgroundColor.splice(index -1, 2, redBack, redBack);
   chart.data.labels = values.map((value) => numToLabel[value]);
   chart.data.datasets[0].borderColor = borderColor;
   chart.data.datasets[0].backgroundColor = backgroundColor;

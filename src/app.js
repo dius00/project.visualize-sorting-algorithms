@@ -8,7 +8,6 @@
 const BubbleSort = require("./bubbleSort");
 const Chart = require("chart.js");
 
-
 //const Chart = require("Chart.js");
 // A link to our styles!
 require("./index.css");
@@ -58,7 +57,8 @@ window.myChart = new Chart(ctx, {
   },
   options: {
     animation: {
-      duration: 0},
+      duration: 0,
+    },
     responsive: true,
     scales: {
       yAxes: [
@@ -94,24 +94,15 @@ const updt = (myChart) => {
   addData(myChart, bubble.arr);
 };
 
-const sleepNow = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
+const sleepNow = (delay) =>
+  new Promise((resolve) => setTimeout(resolve, delay));
 
 async function repeatedGreetingsLoop() {
   for (let i = 1; i <= 5; i++) {
-    await sleepNow(1000)
-    console.log(`Hello #${i}`)
+    await sleepNow(1000);
+    console.log(`Hello #${i}`);
   }
 }
 
-
-
-
-
-
-
-
-
-
 let btn = document.getElementById("update");
 btn.onclick = () => bubble.sort();
- 

@@ -4,11 +4,9 @@
 */
 
 // How can we use require here if it's frontend? We can thank webpack.
-//const updt = require("./bubbleToChart");
 const BubbleSort = require("./bubbleSort");
 const Chart = require("chart.js");
 
-//const Chart = require("Chart.js");
 // A link to our styles!
 require("./index.css");
 
@@ -79,6 +77,8 @@ let srtBtn = document.getElementById("sort");
 srtBtn.addEventListener("click", () => {
   bubble.sort();
 });
+
+// ONLY THE BRAVE ONES VENTURE PAST THIS LINE
 
 /*
 rstBtn.addEventListener("click", () => {

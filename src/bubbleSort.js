@@ -8,7 +8,7 @@ class BubbleSort {
     let areInOrder = 0;
     const bubble = async () => {
       // eslint-disable-next-line no-constant-condition
-      while (true) {
+      while (this.changeTracker) {
         this.changeTracker = false;
         for (let i = 0; i < this.arr.length - areInOrder; i++) {
           if (this.arr[i + 1]) {
@@ -25,7 +25,7 @@ class BubbleSort {
         }
 
         areInOrder++;
-        if (!this.changeTracker) break;
+        //if (!this.changeTracker) break;
       }
     };
     bubble();
